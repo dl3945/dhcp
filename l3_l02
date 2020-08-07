@@ -1,0 +1,26 @@
+vlan 10
+int vlan 10
+ip address 10.10.0.33 255.255.255.0
+no shutdown
+exit
+vlan 20
+int vlan 20
+ip address 10.20.0.33 255.255.255.0
+no shutdown
+vlan 777
+int vlan 777
+ip address 172.16.0.33 255.255.255.0
+no shutdown
+exit
+int gig2/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 1,10,20,777
+exit
+int range gi1/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 1,10,20,777
+spanning-tree link-type point-to-point
